@@ -6,17 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6B4C7DCB2FAC2DD900ACAF36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B4C7DC72FAC2DD900ACAF36 /* Assets.xcassets */; };
+		6B4C7DCC2FAC2DD900ACAF36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C7DC82FAC2DD900ACAF36 /* ContentView.swift */; };
+		6B4C7DCD2FAC2DD900ACAF36 /* MovieExplorerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C7DC92FAC2DD900ACAF36 /* MovieExplorerApp.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		6B00E4BE2FAAF050000A57E2 /* MovieExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B4C7DC72FAC2DD900ACAF36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6B4C7DC82FAC2DD900ACAF36 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6B4C7DC92FAC2DD900ACAF36 /* MovieExplorerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieExplorerApp.swift; sourceTree = "<group>"; };
+		6B4C7DD72FAC34E700ACAF36 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		6B00E4C02FAAF050000A57E2 /* MovieExplorer */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MovieExplorer;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6B00E4BB2FAAF050000A57E2 /* Frameworks */ = {
@@ -32,8 +34,9 @@
 		6B00E4B52FAAF050000A57E2 = {
 			isa = PBXGroup;
 			children = (
-				6B00E4C02FAAF050000A57E2 /* MovieExplorer */,
+				6B4C7DCA2FAC2DD900ACAF36 /* MovieExplorer */,
 				6B00E4BF2FAAF050000A57E2 /* Products */,
+				6B4C7DD72FAC34E700ACAF36 /* Config.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -43,6 +46,80 @@
 				6B00E4BE2FAAF050000A57E2 /* MovieExplorer.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6B4C7DCA2FAC2DD900ACAF36 /* MovieExplorer */ = {
+			isa = PBXGroup;
+			children = (
+				6B4C7DCE2FAC2F9900ACAF36 /* App */,
+				6B4C7DCF2FAC2FA100ACAF36 /* Core */,
+				6B4C7DD02FAC2FA700ACAF36 /* Features */,
+				6B4C7DC92FAC2DD900ACAF36 /* MovieExplorerApp.swift */,
+				6B4C7DC82FAC2DD900ACAF36 /* ContentView.swift */,
+				6B4C7DC72FAC2DD900ACAF36 /* Assets.xcassets */,
+			);
+			path = MovieExplorer;
+			sourceTree = "<group>";
+		};
+		6B4C7DCE2FAC2F9900ACAF36 /* App */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6B4C7DCF2FAC2FA100ACAF36 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				6B4C7DD12FAC2FC900ACAF36 /* Networking */,
+				6B4C7DD22FAC2FD300ACAF36 /* Models */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		6B4C7DD02FAC2FA700ACAF36 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				6B4C7DD52FAC2FEC00ACAF36 /* Home */,
+				6B4C7DD42FAC2FE700ACAF36 /* Search */,
+				6B4C7DD32FAC2FE000ACAF36 /* Detail */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		6B4C7DD12FAC2FC900ACAF36 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		6B4C7DD22FAC2FD300ACAF36 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6B4C7DD32FAC2FE000ACAF36 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		6B4C7DD42FAC2FE700ACAF36 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		6B4C7DD52FAC2FEC00ACAF36 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +136,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				6B00E4C02FAAF050000A57E2 /* MovieExplorer */,
 			);
 			name = MovieExplorer;
 			packageProductDependencies = (
@@ -109,6 +183,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B4C7DCB2FAC2DD900ACAF36 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +194,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B4C7DCC2FAC2DD900ACAF36 /* ContentView.swift in Sources */,
+				6B4C7DCD2FAC2DD900ACAF36 /* MovieExplorerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +323,7 @@
 		};
 		6B00E4CA2FAAF051000A57E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B4C7DD72FAC34E700ACAF36 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -277,6 +355,7 @@
 		};
 		6B00E4CB2FAAF051000A57E2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B4C7DD72FAC34E700ACAF36 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
