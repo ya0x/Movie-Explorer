@@ -13,7 +13,7 @@ struct HomeView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(viewModel.popularMovies, id: \.id) { movie in
-                            Text(movie.title)
+                            MovieCard(movie: movie)
                         }
                     }
                     .padding(.horizontal)
@@ -25,7 +25,7 @@ struct HomeView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(viewModel.topRatedMovies, id: \.id) { movie in
-                            Text(movie.title)
+                            MovieCard(movie: movie)
                         }
                     }
                     .padding(.horizontal)
