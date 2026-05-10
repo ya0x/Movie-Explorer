@@ -37,7 +37,7 @@ struct HomeView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(viewModel.popularTVShows, id: \.id) { show in
-                            Text(show.name)
+                            TVShowCard(tvShow: show)
                         }
                     }
                     .padding(.horizontal)
