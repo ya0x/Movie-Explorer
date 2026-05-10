@@ -4,19 +4,26 @@ struct MovieCard: View {
     let movie: Movie
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center, spacing: 4) {
             AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)")) { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
+                    .cornerRadius(8)
             } placeholder: {
                 Color.gray
             }
             .frame(width: 120, height:180)
             .clipped()
             Text(movie.title)
-            Text(String(movie.voteAverage))
+                .font(.caption)
+                .lineLimit(2)
+                .frame(width:120)
+                .multilineTextAlignment(.center)
+            Text("⭐\(String(format: "%.1f", movie.voteAverage))")
+                .font(.caption2)
         }
+        .frame(maxHeight: .infinity, alignment: .top)
     }
 }
 
