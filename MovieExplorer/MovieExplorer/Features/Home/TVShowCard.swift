@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct MovieCard: View {
-    let movie: Movie
+struct TVShowCard: View {
+    let tvShow: TVShow
     
     var body: some View {
         VStack(alignment: .center, spacing: 4) {
-            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)")) { image in
+            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(tvShow.posterPath)")) { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -15,12 +15,12 @@ struct MovieCard: View {
             }
             .frame(width: 120, height:180)
             .clipped()
-            Text(movie.title)
+            Text(tvShow.name)
                 .font(.caption)
                 .lineLimit(2)
                 .frame(width:120)
                 .multilineTextAlignment(.center)
-            Text("⭐\(String(format: "%.1f", movie.voteAverage))")
+            Text("⭐\(String(format: "%.1f", tvShow.voteAverage))")
                 .font(.caption2)
         }
         .frame(maxHeight: .infinity, alignment: .top)
@@ -28,12 +28,12 @@ struct MovieCard: View {
 }
 
 #Preview {
-    MovieCard(movie: Movie(
+    TVShowCard(tvShow: TVShow(
         id: 1,
-        title: "Inception",
+        name: "Inception",
         overview: "A thief who...",
         posterPath: "/abc123.jpg",
         voteAverage: 8.5,
-        releaseDate: "2010-07-16"
+        firstAirDate: "2010-07-16"
     ))
 }
