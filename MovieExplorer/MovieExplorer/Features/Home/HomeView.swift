@@ -8,6 +8,11 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     
+                    if viewModel.isLoading {
+                        ProgressView("Loading...")
+                            .padding()
+                    }
+                    
                     Text("Popular Movies")
                         .font(.headline)
                         .padding(.horizontal)

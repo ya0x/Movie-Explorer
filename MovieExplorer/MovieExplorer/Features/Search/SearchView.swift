@@ -9,6 +9,12 @@ struct SearchView: View {
                 .onSubmit {
                     viewModel.search()
                 }
+            
+            if viewModel.isLoading {
+                ProgressView("Searching...")
+                    .padding()
+            }
+            
             List {
                 ForEach(viewModel.results, id: \.id) { movie in
                     MovieCard(movie: movie)
