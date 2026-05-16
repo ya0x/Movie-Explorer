@@ -5,6 +5,7 @@ class SearchViewModel: ObservableObject {
     @Published var results: [Movie] = []
     @Published var isLoading = false
     @Published var searchText = ""
+    @Published var errorMessage = ""
     
     func search() {
         isLoading = true
