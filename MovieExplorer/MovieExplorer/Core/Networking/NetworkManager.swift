@@ -1,10 +1,3 @@
-//
-//  NetworkManager.swift
-//  MovieExplorer
-//
-//  Created by YoungMin Kwon on 6/05/26.
-//
-
 import Foundation
 
 class NetworkManager {
