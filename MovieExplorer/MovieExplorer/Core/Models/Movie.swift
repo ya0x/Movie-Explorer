@@ -27,11 +27,11 @@ struct MovieDetail: Codable {
     let id: Int
     let title: String
     let overview: String
-    let posterPath: String
+    let posterPath: String?
     let voteAverage: Double
-    let releaseDate: String
+    let releaseDate: String?
     let genres: [Genre]
-    let runtime: Int
+    let runtime: Int?
     
     enum CodingKeys: String, CodingKey {
         case id

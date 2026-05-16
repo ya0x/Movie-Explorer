@@ -1,12 +1,13 @@
 import SwiftUI
 
 struct DetailView: View {
-    let movie: Movie
+    @StateObject private var viewModel = DetailViewModel()
+    let movieID: Int
     
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 4) {
-                AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)")) { image in
+                AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(viewModel.movieDetail?.posterPath ?? "")")) { image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -16,24 +17,44 @@ struct DetailView: View {
                 }
                 .frame(width: 300, height:450)
                 .clipped()
-                Text(movie.title)
+                
+                Text(viewModel.movieDetail?.title ?? "")
                     .font(.title)
-                Text("⭐\(String(format: "%.1f", movie.voteAverage))")
+                
+                Text("⭐\(String(format: "%.1f", viewModel.movieDetail?.voteAverage ?? 0.0))")
                     .font(.caption2)
-                Text(movie.overview)
+                
+                Text(viewModel.movieDetail?.overview ?? "")
                     .padding()
+                
+                Text("Runtime: \(viewModel.movieDetail?.runtime ?? 0) min")
+                    .font(.caption)
+                
+                HStack {
+                    ForEach(viewModel.movieDetail?.genres ?? [], id: \.id) { genre in
+                        Text(genre.name)
+                            .font(.caption)
+                            .padding(4)
+                            .background(Color.blue.opacity(0.2))
+                            .cornerRadius(4)
+                    }
+                }
+                
+                Text("Cast")
+                    .font(.headline)
+                
+                ForEach(viewModel.cast.prefix(5), id: \.id) { member in
+                    Text("\(member.name) as \(member.character ?? "")")
+                        .font(.caption)
+                }
             }
+        }
+        .onAppear {
+            viewModel.loadDetail(id: movieID)
         }
     }
 }
 
 #Preview {
-    DetailView(movie: Movie(
-        id: 1,
-        title: "Inception",
-        overview: "A thief who...",
-        posterPath: "/abc123.jpg",
-        voteAverage: 8.5,
-        releaseDate: "2010-07-16"
-    ))
+    DetailView(movieID: 550)
 }

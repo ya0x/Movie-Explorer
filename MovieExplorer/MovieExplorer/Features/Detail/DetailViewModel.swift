@@ -25,7 +25,7 @@ class DetailViewModel: ObservableObject {
                 }
             } catch {
                 await MainActor.run {
-                    errorMessage = "Failed to load data."
+                    errorMessage = error.localizedDescription
                     isLoading = false
                 }
             }
