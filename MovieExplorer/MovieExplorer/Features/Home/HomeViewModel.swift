@@ -9,6 +9,7 @@ class HomeViewModel: ObservableObject {
     @Published var errorMessage = ""
     
     func loadData() {
+        errorMessage = ""
         isLoading = true
         
         Task {
