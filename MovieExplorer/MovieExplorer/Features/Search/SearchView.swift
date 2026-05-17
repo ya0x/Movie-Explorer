@@ -6,9 +6,12 @@ struct SearchView: View {
     var body: some View {
         VStack {
             TextField("Seach movies...", text: $viewModel.searchText)
-                .onSubmit {
-                    viewModel.search()
-                }
+            
+            Picker("Search Type", selection: $viewModel.searchType) {
+                Text("Movies").tag(SearchViewModel.SearchType.movies)
+                Text("TV Shows").tag(SearchViewModel.SearchType.tvShows)
+            }
+            .pickerStyle(.segmented)
             
             if viewModel.isLoading {
                 ProgressView("Searching...")
@@ -26,16 +29,30 @@ struct SearchView: View {
                 .padding()
             }
             
-            if !viewModel.isLoading && viewModel.results.isEmpty && !viewModel.searchText.isEmpty {
-                Text("No results found.")
-                    .foregroundColor(.gray)
-                    .padding()
+            if !viewModel.isLoading && !viewModel.searchText.isEmpty {
+                if viewModel.searchType == .movies && viewModel.results.isEmpty {
+                    Text("No results found.")
+                        .foregroundColor(.gray)
+                        .padding()
+                } else if viewModel.searchType == .tvShows && viewModel.tvResults.isEmpty {
+                    Text("No results found.")
+                        .foregroundColor(.gray)
+                        .padding()
+                }
+                
             }
             
             List {
-                ForEach(viewModel.results, id: \.id) { movie in
-                    MovieCard(movie: movie)
+                if viewModel.searchType == .movies {
+                    ForEach(viewModel.results, id: \.id) { movie in
+                        MovieCard(movie: movie)
+                    }
+                } else {
+                    ForEach(viewModel.tvResults, id: \.id) { show in
+                        TVShowCard(tvShow: show)
+                    }
                 }
+                
             }
         }
     }
