@@ -48,6 +48,14 @@ struct DetailView: View {
                         .font(.caption)
                 }
                 
+                Text("Trailers")
+                    .font(.headline)
+                
+                ForEach(viewModel.videos.filter { $0.site == "YouTube" && $0.type == "Trailer" }, id: \.key) { video in
+                    YoutubePlayerView(videoKey: video.key)
+                        .frame(height: 200)
+                }
+                
                 Text("Recommended")
                     .font(.headline)
                 
