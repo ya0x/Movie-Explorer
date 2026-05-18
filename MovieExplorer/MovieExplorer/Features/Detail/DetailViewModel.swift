@@ -5,6 +5,7 @@ class DetailViewModel: ObservableObject {
     @Published var movieDetail: MovieDetail?
     @Published var cast: [CastMember] = []
     @Published var videos: [Video] = []
+    @Published var recommended: [Movie] = []
     @Published var isLoading = false
     @Published var errorMessage = ""
     
@@ -16,11 +17,13 @@ class DetailViewModel: ObservableObject {
                 let movieDetails = try await TMDBService.shared.fetchMovieDetail(id: id)
                 let credit = try await TMDBService.shared.fetchMovieCredits(id: id)
                 let video = try await TMDBService.shared.fetchMovieVideos(id: id)
+                let recommendedMovies = try await TMDBService.shared.fetchRecommendations(id: id)
                 
                 await MainActor.run {
                     movieDetail = movieDetails
                     cast = credit.cast
                     videos = video.results
+                    recommended = recommendedMovies
                     isLoading = false
                 }
             } catch {

@@ -47,6 +47,20 @@ struct DetailView: View {
                     Text("\(member.name) as \(member.character ?? "")")
                         .font(.caption)
                 }
+                
+                Text("Recommended")
+                    .font(.headline)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(viewModel.recommended, id: \.id) { movie in
+                            NavigationLink(destination: DetailView(movieID: movie.id)) {
+                                MovieCard(movie: movie)
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                }
             }
         }
         .onAppear {

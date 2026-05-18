@@ -48,4 +48,16 @@ class TMDBService {
         let url = URL(string: NetworkManager.shared.baseURL + "/movie/\(id)/videos")!
         return try await NetworkManager.shared.fetch(url: url)
     }
+    
+    func fetchRecommendations(id: Int) async throws -> [Movie] {
+        let url = URL(string: NetworkManager.shared.baseURL + "/movie/\(id)/recommendations")!
+        let response: MovieResponse = try await NetworkManager.shared.fetch(url: url)
+        return response.results
+    }
+    
+    func fetchTVRecommendations(id: Int) async throws -> [TVShow] {
+        let url = URL(string: NetworkManager.shared.baseURL + "/tv/\(id)/recommendations")!
+        let response: TVShowResponse = try await NetworkManager.shared.fetch(url: url)
+        return response.results
+    }
 }
