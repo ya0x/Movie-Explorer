@@ -60,4 +60,10 @@ class TMDBService {
         let response: TVShowResponse = try await NetworkManager.shared.fetch(url: url)
         return response.results
     }
+    
+    func fetchTrendingMovies () async throws -> [Movie] {
+        let url = URL(string: NetworkManager.shared.baseURL + "/trending/movie/day")!
+        let response: MovieResponse = try await NetworkManager.shared.fetch(url: url)
+        return response.results
+    }
 }

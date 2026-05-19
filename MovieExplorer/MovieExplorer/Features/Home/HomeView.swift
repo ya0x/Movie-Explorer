@@ -22,6 +22,20 @@ struct HomeView: View {
                             .padding()
                     } else {
                         
+                        Text("Trending Movies")
+                            .font(.headline)
+                            .padding(.horizontal)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(viewModel.trendingMovies, id: \.id) { movie in
+                                    NavigationLink(destination: DetailView(movieID: movie.id)) {
+                                        MovieCard(movie: movie)
+                                    }
+                                }
+                                .padding(.horizontal)
+                            }
+                        }
+                        
                         Text("Popular Movies")
                             .font(.headline)
                             .padding(.horizontal)
