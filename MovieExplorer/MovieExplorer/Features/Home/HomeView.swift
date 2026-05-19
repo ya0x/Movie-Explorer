@@ -70,10 +70,12 @@ struct HomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(viewModel.popularTVShows, id: \.id) { show in
-                                    TVShowCard(tvShow: show)
+                                    NavigationLink(destination: TVShowDetailView(tvShowID: show.id)) {
+                                        TVShowCard(tvShow: show)
+                                    }
                                 }
+                                .padding(.horizontal)
                             }
-                            .padding(.horizontal)
                         }
                     }
                     

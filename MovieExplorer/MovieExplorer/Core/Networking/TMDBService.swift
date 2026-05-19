@@ -55,15 +55,35 @@ class TMDBService {
         return response.results
     }
     
-    func fetchTVRecommendations(id: Int) async throws -> [TVShow] {
+    func fetchTrendingMovies () async throws -> [Movie] {
+        let url = URL(string: NetworkManager.shared.baseURL + "/trending/movie/day")!
+        let response: MovieResponse = try await NetworkManager.shared.fetch(url: url)
+        return response.results
+    }
+    
+    func fetchTVShowDetail(id: Int) async throws -> TVShowDetail {
+        let url = URL(string: NetworkManager.shared.baseURL + "/tv/\(id)")!
+        return try await NetworkManager.shared.fetch(url: url)
+    }
+    
+    func fetchTVShowCredits(id: Int) async throws -> CreditsResponse {
+        let url = URL(string: NetworkManager.shared.baseURL + "/tv/\(id)/credits")!
+        return try await NetworkManager.shared.fetch(url: url)
+    }
+    
+    func fetchTVShowVideos(id: Int) async throws -> VideoResponse {
+        let url = URL(string: NetworkManager.shared.baseURL + "/tv/\(id)/videos")!
+        return try await NetworkManager.shared.fetch(url: url)
+    }
+    
+    func fetchTVShowRecommendations(id: Int) async throws -> [TVShow] {
         let url = URL(string: NetworkManager.shared.baseURL + "/tv/\(id)/recommendations")!
         let response: TVShowResponse = try await NetworkManager.shared.fetch(url: url)
         return response.results
     }
     
-    func fetchTrendingMovies () async throws -> [Movie] {
-        let url = URL(string: NetworkManager.shared.baseURL + "/trending/movie/day")!
-        let response: MovieResponse = try await NetworkManager.shared.fetch(url: url)
-        return response.results
+    func fetchSeasonDetail(tvShowId: Int, seasonNumber: Int) async throws -> SeasonDetail {
+        let url = URL(string: NetworkManager.shared.baseURL + "/tv/\(tvShowId)/season/\(seasonNumber)")!
+        return try await NetworkManager.shared.fetch(url: url)
     }
 }
