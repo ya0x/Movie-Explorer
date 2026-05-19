@@ -19,6 +19,7 @@
 		6B4C7DCC2FAC2DD900ACAF36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C7DC82FAC2DD900ACAF36 /* ContentView.swift */; };
 		6B4C7DCD2FAC2DD900ACAF36 /* MovieExplorerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C7DC92FAC2DD900ACAF36 /* MovieExplorerApp.swift */; };
 		6B4C7DEA2FAC3AE400ACAF36 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4C7DE92FAC3AE400ACAF36 /* NetworkManager.swift */; };
+		6B62A4992FBBE33D009897D2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6B62A4982FBBE33D009897D2 /* Kingfisher */; };
 		6B75F9EB2FAECADD00A929F4 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B75F9EA2FAECADD00A929F4 /* Movie.swift */; };
 		6BD3FB4F2FB0321D00FFE74C /* TVShowCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD3FB4E2FB0321D00FFE74C /* TVShowCard.swift */; };
 		6BEAA7D22FAECE970090604E /* TVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BEAA7D12FAECE910090604E /* TVShow.swift */; };
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B62A4992FBBE33D009897D2 /* Kingfisher in Frameworks */,
 				6B21E0872FBACDC900895CDF /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,6 +191,7 @@
 			name = MovieExplorer;
 			packageProductDependencies = (
 				6B21E0862FBACDC900895CDF /* YouTubeiOSPlayerHelper */,
+				6B62A4982FBBE33D009897D2 /* Kingfisher */,
 			);
 			productName = MovieExplorer;
 			productReference = 6B00E4BE2FAAF050000A57E2 /* MovieExplorer.app */;
@@ -220,6 +223,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6B21E0852FBACDC900895CDF /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
+				6B62A4972FBBE33D009897D2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6B00E4BF2FAAF050000A57E2 /* Products */;
@@ -487,6 +491,14 @@
 				minimumVersion = 1.0.4;
 			};
 		};
+		6B62A4972FBBE33D009897D2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -494,6 +506,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6B21E0852FBACDC900895CDF /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
 			productName = YouTubeiOSPlayerHelper;
+		};
+		6B62A4982FBBE33D009897D2 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6B62A4972FBBE33D009897D2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
