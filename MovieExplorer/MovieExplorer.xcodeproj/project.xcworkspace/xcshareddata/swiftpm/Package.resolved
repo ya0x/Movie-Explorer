@@ -1,6 +1,15 @@
 {
-  "originHash" : "3c8ab2275141eb35fec179e8227d28d31f75270b4632a95936f4929dd8dc92bf",
+  "originHash" : "e3c8151636a9b2ab0c33ea390fb7ba8b06ec683260d866064e5260663b49c3cb",
   "pins" : [
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "cf8be20d07654570554c8a8a4952bc8a5766a8b0",
+        "version" : "8.9.0"
+      }
+    },
     {
       "identity" : "youtube-ios-player-helper",
       "kind" : "remoteSourceControl",

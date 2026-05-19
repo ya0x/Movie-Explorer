@@ -1,20 +1,18 @@
 import SwiftUI
+import Kingfisher
 
 struct MovieCard: View {
     let movie: Movie
     
     var body: some View {
         VStack(alignment: .center, spacing: 4) {
-            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)")) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .cornerRadius(8)
-            } placeholder: {
-                Color.gray
-            }
-            .frame(width: 120, height:180)
-            .clipped()
+            KFImage(URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)"))
+                .placeholder { Color.gray }
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .cornerRadius(8)
+                .frame(width: 120, height:180)
+                .clipped()
             Text(movie.title)
                 .font(.caption)
                 .lineLimit(2)

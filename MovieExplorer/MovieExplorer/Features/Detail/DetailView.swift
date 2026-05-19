@@ -1,4 +1,5 @@
 import SwiftUI
+import Kingfisher
 
 struct DetailView: View {
     @StateObject private var viewModel = DetailViewModel()
@@ -7,19 +8,19 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 4) {
-                AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(viewModel.movieDetail?.posterPath ?? "")")) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .cornerRadius(8)
-                } placeholder: {
-                    Color.gray
-                }
-                .frame(width: 300, height:450)
-                .clipped()
+                KFImage(URL(string: "https://image.tmdb.org/t/p/w500\(viewModel.movieDetail?.posterPath ?? "")"))
+                    .placeholder { Color.gray }
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .cornerRadius(8)
+                    .frame(width: 300, height:450)
+                    .clipped()
                 
                 Text(viewModel.movieDetail?.title ?? "")
                     .font(.title)
+                
+                Text(String((viewModel.movieDetail?.releaseDate ?? "").prefix(4)))
+                    .font(.caption2)
                 
                 Text("⭐\(String(format: "%.1f", viewModel.movieDetail?.voteAverage ?? 0.0))")
                     .font(.caption2)
