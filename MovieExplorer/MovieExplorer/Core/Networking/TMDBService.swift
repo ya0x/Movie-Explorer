@@ -1,6 +1,6 @@
 import Foundation
 
-class TMDBService {
+class TMDBService: TMDBServiceProtocol {
     static let shared = TMDBService()
     private init() {}
     

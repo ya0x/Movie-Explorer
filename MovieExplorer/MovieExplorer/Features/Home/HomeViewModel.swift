@@ -9,16 +9,22 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage = ""
     
+    private let service: TMDBServiceProtocol
+    
+    init(service: TMDBServiceProtocol = TMDBService.shared) {
+        self.service = service
+    }
+    
     func loadData() {
         errorMessage = ""
         isLoading = true
         
         Task {
             do {
-                let movies = try await TMDBService.shared.fetchPopularMovies()
-                let topRated = try await TMDBService.shared.fetchTopRatedMovies()
-                let trending = try await TMDBService.shared.fetchTrendingMovies()
-                let shows = try await TMDBService.shared.fetchPopularTVShows()
+                let movies = try await service.fetchPopularMovies()
+                let topRated = try await service.fetchTopRatedMovies()
+                let trending = try await service.fetchTrendingMovies()
+                let shows = try await service.fetchPopularTVShows()
                 
                 await MainActor.run {
                     popularMovies = movies
