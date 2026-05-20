@@ -1,131 +1,69 @@
-# iOS App Exercise: **Movie Explorer** with TheMovieDB API
+# Movie Explorer
 
-## Goal
-Build an iOS app using **SwiftUI**, **Swift**, and **Swift Package Manager (SPM)** that consumes the **TheMovieDB API**:  
-👉 [TMDB Docs – Getting Started](https://developer.themoviedb.org/docs/getting-started)
+iOS app to explore movies and TV shows using the TMDB API.
 
-The app should demonstrate modern iOS development practices, clean code, and Git workflow discipline.
+## Requirements
+- Xcode 15+
+- iOS 16+
+- Account at [TMDB](https://www.themoviedb.org)
 
----
+## Setup
+1. Clone the repository
+2. Create the file `MovieExplorer/Config.xcconfig`
+3. Add your token:
+TMDB_ACCESS_TOKEN = your_token_here
+4. In Xcode go to `MovieExplorer` target → `Info` → add a new key:
+   - Key: `TMDB_ACCESS_TOKEN`
+   - Type: `String`
+   - Value: `$(TMDB_ACCESS_TOKEN)`
+5. Open `MovieExplorer.xcodeproj`
+6. Run the project with `Cmd + R`
 
-## Functional Requirements
+## Architecture
 
-### General
-- The app must **adapt to the system theme** (Light / Dark).
-- Support **nested navigation**:  
-  Example: from a movie detail, open a related movie’s detail, then from there open another related item, and so on.
+The app follows the **MVVM** (Model-View-ViewModel) pattern:
 
-### Content
-- **Movies and TV Shows**:
-  - Show collections (grids/lists) with poster images and basic metadata (title, year, rating).
-  - Query for both **popular** and **top-rated** items.
-  - Provide **search** functionality across movies and TV shows.
-- **Details view**:
-  - Show poster, title, year, genres, rating, runtime/season count, description, and cast (at least top 5).
-  - Show **related/recommended items** with navigation to their details.
-  - Integrate **videos** (trailers, clips) from TMDB, playable inside the app.
-- **TV Series**:
-  - Display seasons and episodes inside the details screen.
+- **Networking/** — Handles all API calls using `URLSession` with `async/await`. Contains `NetworkManager` and `TMDBService`.
+- **Models/** — Data models representing API responses (Movie, TVShow, MovieDetail, TVShowDetail, Season, Episode, Cast, Video).
+- **Features/Home/** — Home screen showing Trending, Popular, and Top Rated sections for movies and TV shows.
+- **Features/Detail/** — Detail screens for movies, TV shows, seasons and episodes with cast, trailers and recommendations.
+- **Features/Search/** — Search functionality for movies and TV shows with 500ms debounce.
 
----
+## Technical Decisions
 
-## Non-Functional / Technical Requirements
-- **Language & UI**: Swift + SwiftUI (target iOS 16+ recommended).
-- **Dependency Management**: Swift Package Manager only.
-- **Architecture**:  
-  - MVVM or similar separation of concerns.  
-  - Apply **Clean Code** and **SOLID principles** where possible.  
-  - Separate DTOs (API models) from Domain models.
-- **Networking**:
-  - Use `URLSession` with `async/await`.  
-  - Organize API client to handle endpoints, parameters, and error cases.
-- **Caching**:
-  - Cache poster images.  
-  - Cache API responses when possible.
-- **Error Handling**:
-  - Show loading, error, and empty states in all major views.  
-  - Retry option on error.
-- **Accessibility**:
-  - Support Dynamic Type.  
-  - VoiceOver labels for images and buttons.
-- **Localization**:
-  - Provide at least **English** and **Spanish**.
+- **Kingfisher** — Used for image caching. Avoids redundant network requests when the same poster is displayed multiple times during scrolling.
+- **Config.xcconfig** — Stores the TMDB API token outside of the codebase so it is never committed to Git.
+- **TMDBServiceProtocol** — Defines a protocol for the API service enabling dependency injection. This allows unit tests to use a mock service instead of making real API calls.
+- **YouTubeiOSPlayerHelper** — Used to embed and play YouTube trailers directly inside the app using `YTPlayerView` wrapped in a `UIViewRepresentable`.
 
----
+## GitFlow
 
-## Git & Collaboration
-- Use **GitFlow** workflow:
-  - Main branch: `main` (stable, reviewed code only).  
-  - Development branch: `develop`.  
-  - Feature branches from `develop`.  
-  - Merge to `develop` via **Merge Requests** (MRs) that must be reviewed before merging.  
-- Investigate and **document GitFlow** briefly in the README.
+This project follows the **GitFlow** workflow:
 
----
+- **`main`** — Stable production branch. Only receives merges from `develop` after review.
+- **`develop`** — Main development branch. All features are merged here via Pull Requests.
+- **`feature/name`** — One branch per feature, created from `develop`. Examples: `feature/nested-navigation`, `feature/unit-tests`.
+
+### Workflow
+1. Create a feature branch from `develop`
+2. Develop and commit using Conventional Commits (`feat:`, `fix:`, `chore:`)
+3. Push and open a Pull Request to `develop`
+4. PR is reviewed before merging
+5. Branch is deleted after merge
 
 ## Testing
-- **Unit Tests** required:
-  - API client decoding (JSON → models).  
-  - ViewModels (loading state, pagination, errors).  
-- Use mocks/stubs to avoid real API calls during testing.
-- **Optional plus**: adopt **Test Driven Development (TDD)** in at least one feature.
 
----
+Run tests with `Cmd + U` in Xcode.
 
-## Extras / Plus Points
-- **Multiplatform** (iPadOS or macOS via Catalyst).  
-- **TDD** applied in features.  
-- Snapshot/UI tests.  
-- CI pipeline (GitHub Actions or similar) for build + test.  
+### What is tested
+- **Model decoding** — Verifies that `Movie` and `TVShow` JSON responses decode correctly into Swift models.
+- **HomeViewModel** — Verifies that `loadData()` correctly populates the movies and TV shows arrays.
+- **Error handling** — Verifies that `HomeViewModel` sets `errorMessage` when the service fails.
 
----
+### Mocks
+`MockTMDBService` and `MockTMDBServiceError` simulate API responses without making real network calls. This ensures tests pass regardless of internet connectivity.
 
-## Recommendations
-- Store API key securely using `xcconfig` or environment variables (do not commit secrets).  
-- Use `NavigationStack` and `NavigationPath` for deep/nested navigation.  
-- Provide a clean, modular structure with SPM packages:
-        MovieExplorer/
-            App/
-            Packages/
-                Core/
-                Networking/
-                TMDBClient/
-                Features/
-                    Home/
-                    Search/
-                    Details/
-                    TVSeasons/
-                    Video/
-- Document technical decisions in the README.  
-- Include screenshots or a short GIF demo of the app.
+## Dependencies
 
----
-
-## Definition of Done (Checklist)
-- [ ] App runs on iOS 16+ (simulator and device).  
-- [ ] Respects Light/Dark system theme.  
-- [ ] Home with multiple sections (Trending, Popular, Top Rated).  
-- [ ] Search with debounce.  
-- [ ] Detail view with videos, cast, and related items.  
-- [ ] Nested navigation between related items.  
-- [ ] TV shows with seasons and episodes.  
-- [ ] Error, loading, and empty states.  
-- [ ] Image caching.  
-- [ ] Unit tests for networking and view models.  
-- [ ] GitFlow with MR reviews.  
-- [ ] README explaining setup and GitFlow.  
-
----
-
-## Evaluation Criteria
-- **Architecture**: modular, clean, testable.  
-- **Code Quality**: readability, adherence to SOLID and Clean Code.  
-- **UX & UI**: responsiveness, accessibility, error states.  
-- **Testing**: quality and coverage.  
-- **Git Workflow**: branch structure, MR usage, commit history.  
-- **Documentation**: clarity of README and setup instructions.  
-
----
-
-👉 This exercise is designed to be **practical yet complete**, so you’ll touch on networking, UI, architecture, testing, Git practices, and clean code.
-
+- [Kingfisher](https://github.com/onevcat/Kingfisher) — Image caching
+- [YouTubeiOSPlayerHelper](https://github.com/youtube/youtube-ios-player-helper) — YouTube video playback
