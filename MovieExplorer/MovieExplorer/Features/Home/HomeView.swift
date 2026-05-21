@@ -22,7 +22,7 @@ struct HomeView: View {
                             .padding()
                     } else {
                         
-                        Text("Trending Movies")
+                        Text("home.trending.title")
                             .font(.headline)
                             .padding(.horizontal)
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -36,7 +36,7 @@ struct HomeView: View {
                             }
                         }
                         
-                        Text("Popular Movies")
+                        Text("home.popular.title")
                             .font(.headline)
                             .padding(.horizontal)
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -50,7 +50,7 @@ struct HomeView: View {
                             }
                         }
                         
-                        Text("Top Rated Movies")
+                        Text("home.topRated.title")
                             .font(.headline)
                             .padding(.horizontal)
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -64,7 +64,7 @@ struct HomeView: View {
                             }
                         }
                         
-                        Text("Popular TV Show")
+                        Text("home.popularTV.title")
                             .font(.headline)
                             .padding(.horizontal)
                         ScrollView(.horizontal, showsIndicators: false) {

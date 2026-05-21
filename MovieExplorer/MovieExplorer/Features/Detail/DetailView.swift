@@ -28,7 +28,7 @@ struct DetailView: View {
                 Text(viewModel.movieDetail?.overview ?? "")
                     .padding()
                 
-                Text("Runtime: \(viewModel.movieDetail?.runtime ?? 0) min")
+                Text("\(String(localized: "detail.runtime.title")): \(viewModel.movieDetail?.runtime ?? 0) min")
                     .font(.caption)
                 
                 HStack {
@@ -41,7 +41,7 @@ struct DetailView: View {
                     }
                 }
                 
-                Text("Cast")
+                Text("detail.cast.title")
                     .font(.headline)
                 
                 ForEach(viewModel.cast.prefix(5), id: \.id) { member in
@@ -49,7 +49,7 @@ struct DetailView: View {
                         .font(.caption)
                 }
                 
-                Text("Trailers")
+                Text("detail.trailers.title")
                     .font(.headline)
                 
                 ForEach(viewModel.videos.filter { $0.site == "YouTube" && $0.type == "Trailer" }, id: \.key) { video in
@@ -57,7 +57,7 @@ struct DetailView: View {
                         .frame(height: 200)
                 }
                 
-                Text("Recommended")
+                Text("detail.recommended.title")
                     .font(.headline)
                 
                 ScrollView(.horizontal, showsIndicators: false) {

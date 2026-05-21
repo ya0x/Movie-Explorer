@@ -28,7 +28,7 @@ struct TVShowDetailView: View {
                 Text(viewModel.tvShowDetail?.overview ?? "")
                     .padding()
                 
-                Text("Seasons: \(viewModel.tvShowDetail?.numberOfSeasons ?? 0) seasons")
+                Text("\(String(localized: "detail.seasons.title")): \(viewModel.tvShowDetail?.numberOfSeasons ?? 0) temporadas")
                     .font(.caption)
                 
                 HStack {
@@ -41,7 +41,7 @@ struct TVShowDetailView: View {
                     }
                 }
                 
-                Text("Seasons")
+                Text("detail.seasons.title")
                     .font(.headline)
                     .padding(.horizontal)
                 
@@ -72,7 +72,7 @@ struct TVShowDetailView: View {
                     }
                 }
                 
-                Text("Cast")
+                Text("detail.cast.title")
                     .font(.headline)
                 
                 ForEach(viewModel.cast.prefix(5), id: \.id) { member in
@@ -80,7 +80,7 @@ struct TVShowDetailView: View {
                         .font(.caption)
                 }
                 
-                Text("Trailers")
+                Text("detail.trailers.title")
                     .font(.headline)
                 
                 ForEach(viewModel.videos.filter { $0.site == "YouTube" && $0.type == "Trailer" }, id: \.key) { video in
@@ -88,7 +88,7 @@ struct TVShowDetailView: View {
                         .frame(height: 200)
                 }
                 
-                Text("Recommended")
+                Text("detail.recommended.title")
                     .font(.headline)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
