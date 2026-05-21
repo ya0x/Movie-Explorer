@@ -13,6 +13,7 @@ struct MovieCard: View {
                 .cornerRadius(8)
                 .frame(width: 120, height:180)
                 .clipped()
+                .accessibilityLabel("Poster of \(movie.title)")
             Text(movie.title)
                 .font(.caption)
                 .lineLimit(2)

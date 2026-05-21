@@ -15,6 +15,7 @@ struct TVShowDetailView: View {
                     .cornerRadius(8)
                     .frame(width: 300, height:450)
                     .clipped()
+                    .accessibilityLabel("Poster of \(viewModel.tvShowDetail?.name ?? "")")
                 
                 Text(viewModel.tvShowDetail?.name ?? "")
                     .font(.title)

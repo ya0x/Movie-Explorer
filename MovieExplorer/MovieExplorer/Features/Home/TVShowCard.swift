@@ -13,6 +13,7 @@ struct TVShowCard: View {
                 .cornerRadius(8)
                 .frame(width: 120, height:180)
                 .clipped()
+                .accessibilityLabel("Poster of \(tvShow.name)")
             Text(tvShow.name)
                 .font(.caption)
                 .lineLimit(2)

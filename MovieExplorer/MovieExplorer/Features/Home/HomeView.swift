@@ -15,6 +15,7 @@ struct HomeView: View {
                             Button("Retry") {
                                 viewModel.loadData()
                             }
+                            .accessibilityLabel("Retry loading content")
                         }
                         .padding()
                     } else if viewModel.isLoading {
