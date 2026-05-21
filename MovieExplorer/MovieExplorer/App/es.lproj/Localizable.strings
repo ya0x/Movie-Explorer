@@ -7,3 +7,5 @@
 "detail.recommended.title" = "Recomendaciones";
 "detail.runtime.title" = "Duración";
 "detail.seasons.title" = "Temporadas";
+"detail.genre.title" = "Géneros";
+"search.title" = "Buscar";

@@ -7,3 +7,5 @@
 "detail.recommended.title" = "Recommended";
 "detail.runtime.title" = "Runtime";
 "detail.seasons.title" = "Seasons";
+"detail.genre.title" = "Genres";
+"seach.title" = "Search";
