@@ -21,6 +21,8 @@ struct TVShowCard: View {
                 .multilineTextAlignment(.center)
             Text("⭐\(String(format: "%.1f", tvShow.voteAverage))")
                 .font(.caption2)
+            Text(String((tvShow.firstAirDate).prefix(4)))
+                .font(.caption2)
         }
         .frame(maxHeight: .infinity, alignment: .top)
     }

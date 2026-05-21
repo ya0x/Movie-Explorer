@@ -21,6 +21,8 @@ struct MovieCard: View {
                 .multilineTextAlignment(.center)
             Text("⭐\(String(format: "%.1f", movie.voteAverage))")
                 .font(.caption2)
+            Text(String((movie.releaseDate).prefix(4)))
+                .font(.caption2)
         }
         .frame(maxHeight: .infinity, alignment: .top)
     }
