@@ -1,6 +1,6 @@
 import Foundation
 
-struct TVShow: Codable {
+struct TVShowDTO: Codable {
     let id: Int
     let name: String
     let overview: String
@@ -15,6 +15,21 @@ struct TVShow: Codable {
         case posterPath = "poster_path"
         case voteAverage = "vote_average"
         case firstAirDate = "first_air_date"
+    }
+}
+
+struct TVShow {
+    let id: Int
+    let name: String
+    let overview: String
+    let posterPath: String
+    let voteAverage: Double
+    let firstAirDate: String
+}
+
+extension TVShowDTO {
+    func toDomain() -> TVShow {
+        return TVShow(id: id, name: name, overview: overview, posterPath: posterPath, voteAverage: voteAverage, firstAirDate: firstAirDate)
     }
 }
 
@@ -103,5 +118,5 @@ struct TVShowDetail: Codable {
 }
 
 struct TVShowResponse: Codable {
-    let results: [TVShow]
+    let results: [TVShowDTO]
 }
