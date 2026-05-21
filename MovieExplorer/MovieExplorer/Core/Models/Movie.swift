@@ -1,6 +1,6 @@
 import Foundation
 
-struct Movie: Codable {
+struct MovieDTO: Codable {
     let id: Int
     let title: String
     let overview: String
@@ -15,6 +15,21 @@ struct Movie: Codable {
         case posterPath = "poster_path"
         case voteAverage = "vote_average"
         case releaseDate = "release_date"
+    }
+}
+
+struct Movie {
+    let id: Int
+    let title: String
+    let overview: String
+    let posterPath: String
+    let voteAverage: Double
+    let releaseDate: String
+}
+
+extension MovieDTO {
+    func toDomain() -> Movie {
+        return Movie(id: id, title: title, overview: overview, posterPath: posterPath, voteAverage: voteAverage, releaseDate: releaseDate)
     }
 }
 
@@ -46,5 +61,5 @@ struct MovieDetail: Codable {
 }
 
 struct MovieResponse: Codable {
-    let results: [Movie]
+    let results: [MovieDTO]
 }

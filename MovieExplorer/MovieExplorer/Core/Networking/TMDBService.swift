@@ -7,31 +7,31 @@ class TMDBService: TMDBServiceProtocol {
     func fetchPopularMovies () async throws -> [Movie] {
         let url = URL(string: NetworkManager.shared.baseURL + "/movie/popular")!
         let response: MovieResponse = try await NetworkManager.shared.fetch(url: url)
-        return response.results
+        return response.results.map { $0.toDomain() }
     }
     
     func fetchTopRatedMovies () async throws -> [Movie] {
         let url = URL(string: NetworkManager.shared.baseURL + "/movie/top_rated")!
         let response: MovieResponse = try await NetworkManager.shared.fetch(url: url)
-        return response.results
+        return response.results.map { $0.toDomain() }
     }
     
     func fetchPopularTVShows () async throws -> [TVShow] {
         let url = URL(string: NetworkManager.shared.baseURL + "/tv/popular")!
         let response: TVShowResponse = try await NetworkManager.shared.fetch(url: url)
-        return response.results
+        return response.results.map { $0.toDomain() }
     }
     
     func searchMovies(query: String) async throws -> [Movie] {
         let url = URL(string: NetworkManager.shared.baseURL + "/search/movie?query=\(query)")!
         let response: MovieResponse = try await NetworkManager.shared.fetch(url: url)
-        return response.results
+        return response.results.map { $0.toDomain() }
     }
     
     func searchTVShows(query: String) async throws -> [TVShow] {
         let url = URL(string: NetworkManager.shared.baseURL + "/search/tv?query=\(query)")!
         let response: TVShowResponse = try await NetworkManager.shared.fetch(url: url)
-        return response.results
+        return response.results.map { $0.toDomain() }
     }
     
     func fetchMovieDetail(id: Int) async throws -> MovieDetail {
@@ -52,13 +52,13 @@ class TMDBService: TMDBServiceProtocol {
     func fetchRecommendations(id: Int) async throws -> [Movie] {
         let url = URL(string: NetworkManager.shared.baseURL + "/movie/\(id)/recommendations")!
         let response: MovieResponse = try await NetworkManager.shared.fetch(url: url)
-        return response.results
+        return response.results.map { $0.toDomain() }
     }
     
     func fetchTrendingMovies () async throws -> [Movie] {
         let url = URL(string: NetworkManager.shared.baseURL + "/trending/movie/day")!
         let response: MovieResponse = try await NetworkManager.shared.fetch(url: url)
-        return response.results
+        return response.results.map { $0.toDomain() }
     }
     
     func fetchTVShowDetail(id: Int) async throws -> TVShowDetail {
@@ -79,7 +79,7 @@ class TMDBService: TMDBServiceProtocol {
     func fetchTVShowRecommendations(id: Int) async throws -> [TVShow] {
         let url = URL(string: NetworkManager.shared.baseURL + "/tv/\(id)/recommendations")!
         let response: TVShowResponse = try await NetworkManager.shared.fetch(url: url)
-        return response.results
+        return response.results.map { $0.toDomain() }
     }
     
     func fetchSeasonDetail(tvShowId: Int, seasonNumber: Int) async throws -> SeasonDetail {
