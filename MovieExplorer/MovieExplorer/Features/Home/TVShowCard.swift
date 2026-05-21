@@ -19,10 +19,18 @@ struct TVShowCard: View {
                 .lineLimit(2)
                 .frame(width:120)
                 .multilineTextAlignment(.center)
-            Text("⭐\(String(format: "%.1f", tvShow.voteAverage))")
-                .font(.caption2)
-            Text(String((tvShow.firstAirDate).prefix(4)))
-                .font(.caption2)
+            HStack {
+                Text(String((tvShow.firstAirDate).prefix(4)))
+                    .font(.caption2)
+                    .padding(4)
+                    .background(Color.blue.opacity(0.2))
+                    .cornerRadius(4)
+                Text("⭐\(String(format: "%.1f", tvShow.voteAverage))")
+                    .font(.caption2)
+                    .padding(4)
+                    .background(Color.blue.opacity(0.2))
+                    .cornerRadius(4)
+            }
         }
         .frame(maxHeight: .infinity, alignment: .top)
     }

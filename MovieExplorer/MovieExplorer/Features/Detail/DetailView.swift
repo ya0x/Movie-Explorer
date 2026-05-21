@@ -7,7 +7,7 @@ struct DetailView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .center, spacing: 4) {
+            VStack(alignment: .center, spacing: 16) {
                 KFImage(URL(string: "https://image.tmdb.org/t/p/w500\(viewModel.movieDetail?.posterPath ?? "")"))
                     .placeholder { Color.gray }
                     .resizable()
@@ -19,20 +19,32 @@ struct DetailView: View {
                 
                 Text(viewModel.movieDetail?.title ?? "")
                     .font(.title)
+                    .multilineTextAlignment(.center)
                 
-                Text(String((viewModel.movieDetail?.releaseDate ?? "").prefix(4)))
-                    .font(.caption2)
-                
-                Text("⭐\(String(format: "%.1f", viewModel.movieDetail?.voteAverage ?? 0.0))")
-                    .font(.caption2)
+                HStack {
+                    Text(String((viewModel.movieDetail?.releaseDate ?? "").prefix(4)))
+                        .font(.subheadline)
+                        .padding(4)
+                        .background(Color.blue.opacity(0.2))
+                        .cornerRadius(4)
+                    
+                    Text("⭐\(String(format: "%.1f", viewModel.movieDetail?.voteAverage ?? 0.0))")
+                        .font(.subheadline)
+                        .padding(4)
+                        .background(Color.blue.opacity(0.2))
+                        .cornerRadius(4)
+                }
                 
                 Text(viewModel.movieDetail?.overview ?? "")
-                    .padding()
+                    .padding(.horizontal)
+                
+                Divider()
                 
                 Text("\(String(localized: "detail.runtime.title")): \(viewModel.movieDetail?.runtime ?? 0) min")
                     .font(.caption)
                 
                 HStack {
+                    Text("\(String(localized: "detail.genre.title")):")
                     ForEach(viewModel.movieDetail?.genres ?? [], id: \.id) { genre in
                         Text(genre.name)
                             .font(.caption)
@@ -41,14 +53,16 @@ struct DetailView: View {
                             .cornerRadius(4)
                     }
                 }
+                Divider()
                 
                 Text("detail.cast.title")
                     .font(.headline)
                 
                 ForEach(viewModel.cast.prefix(5), id: \.id) { member in
                     Text("\(member.name) as \(member.character ?? "")")
-                        .font(.caption)
+                        .padding(.horizontal)
                 }
+                Divider()
                 
                 Text("detail.trailers.title")
                     .font(.headline)
@@ -57,6 +71,7 @@ struct DetailView: View {
                     YoutubePlayerView(videoKey: video.key)
                         .frame(height: 200)
                 }
+                Divider()
                 
                 Text("detail.recommended.title")
                     .font(.headline)

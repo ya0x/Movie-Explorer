@@ -84,8 +84,8 @@ struct HomeView: View {
             }
             .onAppear {
                 viewModel.loadData()
-                
             }
+            .navigationTitle("Movie Explorer")
         }
     }
 }
