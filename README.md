@@ -35,6 +35,10 @@ The app follows the **MVVM** (Model-View-ViewModel) pattern:
 - **Config.xcconfig** — Stores the TMDB API token outside of the codebase so it is never committed to Git.
 - **TMDBServiceProtocol** — Defines a protocol for the API service enabling dependency injection. This allows unit tests to use a mock service instead of making real API calls.
 - **YouTubeiOSPlayerHelper** — Used to embed and play YouTube trailers directly inside the app using `YTPlayerView` wrapped in a `UIViewRepresentable`.
+- **LazyVGrid** — Used in SearchView to display results in a 2-column grid for better use of screen space.
+- **DTO Separation** — API models (DTOs) are separate from domain models. DTOs handle JSON decoding, domain models are used in the UI.
+- **Localization** — App supports English and Spanish via `Localizable.strings`.
+- **Accessibility** — VoiceOver labels added to all images and interactive buttons.
 
 ## GitFlow
 
